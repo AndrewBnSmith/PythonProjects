@@ -1,0 +1,53 @@
+<html>  
+ <head>  
+  <title>Python Flask Drag and Drop Reorder with Jquery Ajax Jquery-UI and MySQLdb Database</title>  
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<style>
+.gallery{ width:100%; float:left;}
+.gallery ul{ margin:0; padding:0; list-style-type:none;}
+.gallery ul li{ padding:7px; border:2px solid #ccc; float:left; margin:10px 7px; background:none; width:auto; height:auto;}
+.gallery img{ width:250px;}
+</style>
+ </head>  
+ <body> 
+<div class="container">
+    <h2>Python Flask Drag and Drop Reorder with Jquery Ajax Jquery-UI and MySQLdb Database</h2>
+    <div>     
+        <div class="gallery">
+            <ul class="reorder-gallery">
+            {% for row in gallery %}
+                <li id="{{row.id}}" class="ui-sortable-handle"><a href="javascript:void(0);"><img src="/static/images/{{row.photoname}}" alt=""></a></li>
+            {% endfor %}
+            </ul>
+        </div>
+    </div><div id="test"></div>
+</div>
+<script>
+$(document).ready(function(){   
+    $("ul.reorder-gallery").sortable({      
+        update: function( event, ui ) {
+            updateOrder();
+        }
+    });  
+});
+function updateOrder() {    
+    var item_order = new Array();
+    $('ul.reorder-gallery li').each(function() {
+        item_order.push($(this).attr("id"));
+    }); 
+    var order_string = 'order='+item_order;
+    $.ajax({
+        method: "POST",
+        url: "/orderupdate",
+        data: order_string,
+        cache: false,
+        success: function(data){    
+            $("#test").html(data);
+        }
+    });
+}
+</script> 
+ </body>  
+</html>   

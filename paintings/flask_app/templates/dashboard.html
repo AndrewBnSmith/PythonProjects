@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>index</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome {{session['user_name']}}</h1>
+        <h1>{{session['first_name']}}</h1>
+        <a href="/dashboard">dashboard</a>
+        {%if session['user_name']%}
+            <a href="{{('logout')}}">Logout</a>
+       {%else%}
+           <li><a href="{{('/')}}">Login</a></li>
+        {% endif %}
+        <a href="/paintings/new">Create</a>
+        <table class="table">
+        </div>
+        <h5>Paintings</h5>
+        <table class="table">
+            <thead>
+              <tr>               
+                        
+              </tr>
+            </thead>
+            <tbody>
+                {% for painting in paintings  %}
+                <tr>                   
+                    <td><a href="/paintings/show_card/{{painting.id}}">{{painting.name}}</a> </td>  
+                           
+                    <td>{{painting.first_name}}</td>     
+                    
+                    {%if session['user_name']%}
+                    <td><a href="/delete/{{painting.id}}">delete</a></td> 
+                    <td><a href="/paintings/edit/{{painting.id}}">edit</a></td>
+                     {%else%}
+                     <td><li>not yours to edit</li></td>
+                     {% endif %}
+
+
+                    <!-- <td>                                         
+                      <a href="/delete/{{painting.id}}">delete</a>
+                      <a href="/paintings/edit/{{painting.id}}">edit</a>
+                    </td> -->
+                </tr>
+                {% endfor %}
+            </tbody>
+            <!-- <tbody>
+                {% for painting in paintings  %}
+                <tr>                   
+                    <td><a href="/paintings/show_card/{{painting.id}}">{{painting.first_name}}</a> </td>          
+                    <td>{{session['user_name']}}</td>                  
+                    <td>                                         
+                      <a href="/delete/{{painting.id}}">delete</a>
+                      <a href="/paintings/edit/{{painting.id}}">edit</a>
+                    </td>
+                </tr>
+                {% endfor %} -->
+            </tbody>
+          </table>
+    </div>

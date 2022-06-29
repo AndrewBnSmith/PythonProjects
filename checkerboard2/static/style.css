@@ -1,0 +1,33 @@
+*{
+    border: 0px;
+    margin: 0px;
+}
+div{
+    height: 1000px;
+    width: 1000px;
+    background: rgb(0, 0, 0);
+    display: inline-block;
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+table, td{
+    border: 1px solid black;
+}
+table{
+    border-collapse: collapse;
+}
+td{
+    height: 150px;
+    width: 150px;
+}
+
+tr{
+    height: 150px;
+    width: 150px;
+}
+.color1{
+    background: rgb(0, 191, 255);
+}
+.color2{
+    background: rgb(255, 255, 255);
+}

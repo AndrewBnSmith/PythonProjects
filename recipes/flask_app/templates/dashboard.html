@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>index</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome {{session['user_name']}}</h1>
+        <h1>{{session['name']}}</h1>
+        <a href="/dashboard">dashboard</a>
+        <a href="/logout">logout</a>
+        <a href="/recipes/new">Create</a>
+        <table class="table">
+        </div>
+        <h1>These are all the Recipes</h1>
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">name </th>
+                <th scope="col">under 30 minutes?</th>
+                <th scope="col">Actions</th>               
+              </tr>
+            </thead>
+            <tbody>
+                {% for recipe in recipes  %}
+                <tr>
+                    <th scope="row">{{recipe.id}}</th>
+                    <td>{{recipe.name}}</td>
+                    <td>{{recipe.under_thirty}}</td>
+                
+                    <td>
+                      <a href="/recipes/show_card/{{recipe.id}}">show instructions</a>
+                      <a href="/recipes/edit/{{recipe.id}}">edit</a>
+                      <a href="/delete/{{recipe.id}}">delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+
+            </tbody>
+          </table>
+    </div>
